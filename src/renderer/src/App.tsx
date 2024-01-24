@@ -2,8 +2,8 @@ import icons from "./assets/icons.svg"
 
 function App(): JSX.Element {
     return (
-        <main>
-
+        <main className="text-cyan-500 text-3xl font-bold">
+            Hello World: Electron
         </main>
     )
 }
