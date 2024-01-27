@@ -1,5 +1,5 @@
-import { contextBridge } from "electron"
-import { electronAPI } from "@electron-toolkit/preload"
+import { contextBridge, ipcRenderer } from "electron"
+import { GetNotes } from "@shared/types"
 
 if (!process.contextIsolated) {
   throw new Error("Context isolation must be enabled")
@@ -7,7 +7,7 @@ if (!process.contextIsolated) {
 
 try {
   contextBridge.exposeInMainWorld("context", {
-    // TODO
+    getNotes: (...args: Parameters<GetNotes>) => ipcRenderer.invoke("getNotes", ...args)  
   })
 } catch (error) {
   console.log(error)

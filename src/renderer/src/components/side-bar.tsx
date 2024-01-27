@@ -29,7 +29,7 @@ export const SideBar = ({ className, onSelect }: SideBarProps) => {
                     <Plus className='h-4 w-4 text-zinc-600' />
                 </div>
             </div>
-            {notes.map((note, index) => (
+            {notes && notes.map((note, index) => (
                 <div onClick={() => handleNoteSelect(index)} className='text-xs group border-b last-of-type:border-none border-zinc-800 flex items-center justify-between' key={index}>
                     <div className='p-2'>
                         <p className='line-clamp-1'>{note.title}</p>
