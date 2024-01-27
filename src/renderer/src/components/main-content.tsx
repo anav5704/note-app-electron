@@ -7,7 +7,7 @@ interface MainContentProps {
 }
 export const MainContent = ({ children, className }: MainContentProps) => {
     return (
-        <main className={cn("border-l border-zinc-800", className)}>
+        <main className={cn("", className)}>
             {children}
         </main>
     )

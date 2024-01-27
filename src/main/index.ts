@@ -7,18 +7,19 @@ function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 900,
-    height: 670,
+    height: 500,
     show: false,
     autoHideMenuBar: true,
     ...(process.platform === "linux" ? { icon } : {}),
     center: true,
     title: "Definitely Not Notion",
     transparent: true,
+    frame: false,
     backgroundMaterial: "none",
     vibrancy: "under-window",
     visualEffectState: "active",
-    titleBarStyle: "hidden",
-    trafficLightPosition: { x: 15, y: 10 },
+    titleBarStyle: "default",
+    titleBarOverlay: true,
     webPreferences: {
       preload: join(__dirname, "../preload/index.js"),
       sandbox: true,

@@ -9,7 +9,7 @@
 
   html,
   body {
-    @apply h-full select-none overflow-hidden text-white rounded-lg;
+    @apply h-full select-none overflow-hidden text-white rounded-lg inset-1 font-mono;
   }
 
   header {
