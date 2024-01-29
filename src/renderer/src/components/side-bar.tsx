@@ -22,6 +22,16 @@ export const SideBar = ({ className, onSelect }: SideBarProps) => {
         deleteNote()
     }
 
+    function formatMillisecondsToDate(milliseconds) {
+        const date = new Date(milliseconds)
+
+        return date.toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: "numeric",
+        })
+    }
+
     return (
         <aside className={cn("w-[200px] border-r border-zinc-800 ", className)}>
             <div className='text-xs group border-b last-of-type:border-none border-zinc-800'>
@@ -33,7 +43,7 @@ export const SideBar = ({ className, onSelect }: SideBarProps) => {
                 <div onClick={() => handleNoteSelect(index)} className='text-xs group border-b last-of-type:border-none border-zinc-800 flex items-center justify-between' key={index}>
                     <div className='p-2'>
                         <p className='line-clamp-1'>{note.title}</p>
-                        <p className='opacity-25 font-light'>{note.updatedAt}</p>
+                        <p className='opacity-25 font-light'>{formatMillisecondsToDate(note.updatedAt)}</p>
                     </div>
                     <div onClick={handleDelete} className='transition cursor-pointer p-2 opacity-0 group-hover:opacity-100'>
                         <Trash2 className='h-4 w-4 text-zinc-600' />
