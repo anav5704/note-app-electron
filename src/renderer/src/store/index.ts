@@ -2,19 +2,6 @@ import { Note, NoteInfo } from "@shared/types"
 import { unwrap } from "jotai/utils"
 import { atom } from "jotai"
 
-const mockData = [
-    {
-        title: "Mahoraga Stats",
-        content: "Content note 1",
-        updatedAt: new Date().getTime()
-    },
-    {
-        title: "Sukuna Stats",
-        content: "Content note 2",
-        updatedAt: new Date().getTime()
-    }
-]
-
 const loadNotes = async () => {
     const notes = await window.context.getNotes()
     return notes.sort((a, b) => b.updatedAt - a.updatedAt)
@@ -26,7 +13,7 @@ export const notesAtom = unwrap(notesAtomAsync, (prev) => prev)
 
 export const selectedNoteIndexAtom = atom<number | null>(null)
 
-export const selectedNoteAtom = atom((get) => {
+const selectedNoteAtomAsync = atom(async (get) => {
     const notes = get(notesAtom)
     const selectedNoteIndex = get(selectedNoteIndexAtom)
 
@@ -34,12 +21,20 @@ export const selectedNoteAtom = atom((get) => {
 
     const selectedNote = notes[selectedNoteIndex]
 
-    return { ...selectedNote, content: `Hello from note ${selectedNoteIndex}` }
+    const noteContent = await window.context.readNote(selectedNote?.title)
+
+    return { ...selectedNote, content: noteContent }
 })
+
+export const selectedNoteAtom = unwrap(selectedNoteAtomAsync, ((prev) => prev ?? {
+    title: "",
+    content: "",
+    updatedAt: null
+}))
 
 export const createEmptyNoteAtom = atom(null, (get, set) => {
     const notes = get(notesAtom)
-    if(!notes) return
+    if (!notes) return
 
     const title = `Title for note ${notes.length + 1}`
 
@@ -55,8 +50,8 @@ export const createEmptyNoteAtom = atom(null, (get, set) => {
 
 export const deleteNoteAtom = atom(null, (get, set) => {
     const notes = get(notesAtom)
-    if(!notes) return
-    
+    if (!notes) return
+
     const selectedNote = get(selectedNoteAtom)
 
     if (!selectedNote) return
