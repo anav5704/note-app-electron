@@ -40,7 +40,7 @@ export const SideBar = ({ className, onSelect }: SideBarProps) => {
                 </div>
             </div>
             {notes && notes.map((note, index) => (
-                <div onClick={() => handleNoteSelect(index)} className='text-xs group border-b last-of-type:border-none border-zinc-800 flex items-center justify-between' key={index}>
+                <div onClick={() => handleNoteSelect(index)} className='text-sm group border-b last-of-type:border-none border-zinc-800 flex items-center justify-between' key={index}>
                     <div className='p-2'>
                         <p className='line-clamp-1'>{note.title}</p>
                         <p className='opacity-25 font-light'>{formatMillisecondsToDate(note.updatedAt)}</p>

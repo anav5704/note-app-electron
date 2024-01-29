@@ -6,6 +6,6 @@
 - TailwindCSS
 
 ## Features
-- Lightweight (300mb)
+- Lightweight (400mb)
 - Markdown shortcuts
 - Periodic autosaving
