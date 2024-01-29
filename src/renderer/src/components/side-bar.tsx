@@ -18,8 +18,8 @@ export const SideBar = ({ className, onSelect }: SideBarProps) => {
         await createEmptyNote()
     }
 
-    const handleDelete = () => {
-        deleteNote()
+    const handleDelete = async () => {
+        await deleteNote()
     }
 
     function formatMillisecondsToDate(milliseconds) {
