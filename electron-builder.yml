@@ -1,5 +1,5 @@
 appId: com.electron.app
-productName: note-app-electron
+productName: ShockPad
 directories:
   buildResources: build
 files:

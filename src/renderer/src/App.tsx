@@ -2,6 +2,7 @@ import { DraggableBar, MainContent, SideBar } from "./components"
 import icons from "./assets/icons.svg"
 import { useRef } from "react"
 import { MarkdownEditor } from "./components/markdown-editor"
+import { useSetAtom } from "jotai"
 
 function App(): JSX.Element {
     const contentRef = useRef<HTMLDivElement>(null)

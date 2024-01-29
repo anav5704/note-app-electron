@@ -17,11 +17,11 @@ const selectedNoteAtomAsync = atom(async (get) => {
     const notes = get(notesAtom)
     const selectedNoteIndex = get(selectedNoteIndexAtom)
 
-    if (selectedNoteIndex === null || !notes) return null
+    if (selectedNoteIndex == null || !notes) return null
 
     const selectedNote = notes[selectedNoteIndex]
 
-    const noteContent = await window.context.readNote(selectedNote?.title)
+    const noteContent = await window.context.readNote(selectedNote.title)
 
     return { ...selectedNote, content: noteContent }
 })
@@ -75,15 +75,16 @@ export const deleteNoteAtom = atom(null, async (get, set) => {
 
     const selectedNote = get(selectedNoteAtom)
 
-    if (!selectedNote) return
+    if (!selectedNote || !notes) return
 
     const isDeleted = await window.context.deleteNote(selectedNote.title)
 
-    if(!isDeleted) return
+    if (!isDeleted) return
 
     set(
         notesAtom,
         notes.filter((note) => note.title !== selectedNote.title)
     )
+
     set(selectedNoteIndexAtom, null)
 })
