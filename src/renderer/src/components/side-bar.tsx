@@ -14,8 +14,8 @@ export const SideBar = ({ className, onSelect }: SideBarProps) => {
     const createEmptyNote = useSetAtom(createEmptyNoteAtom)
     const deleteNote = useSetAtom(deleteNoteAtom)
 
-    const handleCreate = () => {
-        createEmptyNote()
+    const handleCreate = async () => {
+        await createEmptyNote()
     }
 
     const handleDelete = () => {

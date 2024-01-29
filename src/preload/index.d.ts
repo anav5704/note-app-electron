@@ -1,4 +1,4 @@
-import { GetNotes, ReadNote, WriteNote } from "@shared/types"
+import { CreateNote, GetNotes, ReadNote, WriteNote } from "@shared/types"
 import { ElectronAPI } from "@electron-toolkit/preload"
 
 declare global {
@@ -7,7 +7,8 @@ declare global {
     context: {
         getNotes: GetNotes,
         readNote: ReadNote,
-        writeNote: WriteNote
+        writeNote: WriteNote,
+        createNote: CreateNote
     }
   }
 }
